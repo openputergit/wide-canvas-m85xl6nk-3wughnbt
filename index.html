@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Pass</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #1a1440;
+            --secondary-color: #727cf5;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Glassmorphism styles */
+        .glass {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 4px 12px 0 rgba(31, 38, 135, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .glass-nav {
+            background: rgba(26, 20, 64, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .glass-footer {
+            background: rgba(26, 20, 64, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .slide-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .slide-indicator.active {
+            width: 30px;
+            background-color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: A; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(26, 20, 64, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(26, 20, 64, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-[#f0f2f5] to-[#e4e6eb] min-h-screen">
+    <!-- Top Navigation -->
+    <nav class="glass-nav text-white px-4 py-3 fixed top-0 left-0 right-0 z-50 flex justify-between items-center">
+        <div class="flex items-center">
+            <button id="menuBtn" class="mr-3">
+                <i class="bi bi-list text-2xl"></i>
+            </button>
+            <h1 class="text-xl font-semibold">Bharat Pass</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <button class="relative">
+                <i class="bi bi-qr-code text-xl"></i>
+            </button>
+            <button class="relative">
+                <i class="bi bi-cart text-xl"></i>
+            </button>
+            <button class="relative">
+                <i class="bi bi-bell text-xl"></i>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">1</span>
+            </button>
+            <button class="relative">
+                <i class="bi bi-person-circle text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- Hero Banner Carousel -->
+        <div class="mt-4 relative">
+            <div id="carousel" class="rounded-3xl overflow-hidden bg-[#b8c7f6] h-48 relative">
+                <!-- Carousel Items -->
+                <div class="carousel-item absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500 ease-in-out">
+                    <img src="https://images.unsplash.com/photo-1557682250-f37eeec95a80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ymx1ZSUyMGdyYWRpZW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" class="object-cover w-full h-full" alt="Banner">
+                </div>
+            </div>
+            <!-- Carousel Indicators -->
+            <div class="flex justify-center gap-2 mt-3">
+                <span class="slide-indicator active h-2 w-6 rounded-full bg-[#727cf5]"></span>
+                <span class="slide-indicator h-2 w-2 rounded-full bg-gray-300"></span>
+                <span class="slide-indicator h-2 w-2 rounded-full bg-gray-300"></span>
+                <span class="slide-indicator h-2 w-2 rounded-full bg-gray-300"></span>
+                <span class="slide-indicator h-2 w-2 rounded-full bg-gray-300"></span>
+                <span class="slide-indicator h-2 w-2 rounded-full bg-gray-300"></span>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="mt-5">
+            <h2 class="text-lg font-semibold text-gray-700 mb-3">Features</h2>
+            <div class="flex overflow-x-auto pb-3 gap-3 hide-scrollbar">
+                <div class="feature-card glass-card flex-shrink-0 w-20 h-20 rounded-lg flex flex-col items-center justify-center bg-[#3d9999]">
+                    <i class="bi bi-basket text-white text-xl"></i>
+                    <span class="text-white text-xs mt-1">Hyper-Mart</span>
+                </div>
+                <div class="feature-card glass-card flex-shrink-0 w-20 h-20 rounded-lg flex flex-col items-center justify-center bg-[#a25858]">
+                    <i class="bi bi-cup-hot text-white text-xl"></i>
+                    <span class="text-white text-xs mt-1">Food Court</span>
+                </div>
+                <div class="feature-card glass-card flex-shrink-0 w-20 h-20 rounded-lg flex flex-col items-center justify-center bg-[#4d9969]">
+                    <i class="bi bi-ticket-perforated text-white text-xl"></i>
+                    <span class="text-white text-xs mt-1">Events</span>
+                </div>
+                <div class="feature-card glass-card flex-shrink-0 w-20 h-20 rounded-lg flex flex-col items-center justify-center bg-[#4d6899]">
+                    <i class="bi bi-tools text-white text-xl"></i>
+                    <span class="text-white text-xs mt-1">Hyperlocal</span>
+                </div>
+                <div class="feature-card glass-card flex-shrink-0 w-20 h-20 rounded-lg flex flex-col items-center justify-center bg-[#9c9949]">
+                    <i class="bi bi-wallet2 text-white text-xl"></i>
+                    <span class="text-white text-xs mt-1">Account</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Service -->
+        <section class="mt-4">
+            <div class="flex justify-between items-center mb-1">
+                <div class="text-sm text-gray-600">Date: 12 Nov 2024</div>
+                <div class="text-sm font-medium text-teal-600">HYPERLOCAL</div>
+            </div>
+            <div class="glass p-3 rounded-lg flex items-center justify-between animate-fade-in">
+                <div class="flex items-center">
+                    <div class="bg-blue-100 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                        <i class="bi bi-lightning-charge-fill text-blue-500"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-700 text-sm">Electrician will arrive at</p>
+                        <p class="text-red-500 font-semibold">10:00 AM</p>
+                    </div>
+                </div>
+                <div class="text-teal-600">
+                    <i class="bi bi-truck text-2xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Services -->
+        <section class="mt-5">
+            <h2 class="text-lg font-semibold text-gray-700 mb-3">Emergency Services</h2>
+            <div class="grid grid-cols-5 gap-3">
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="bi bi-heart text-gray-700"></i>
+                    </div>
+                    <span class="text-gray-700 text-xs mt-1">Pet Care</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="bi bi-shield text-gray-700"></i>
+                    </div>
+                    <span class="text-gray-700 text-xs mt-1">Police</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="bi bi-plus-circle text-gray-700"></i>
+                    </div>
+                    <span class="text-gray-700 text-xs mt-1">Medical</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="bi bi-fire text-gray-700"></i>
+                    </div>
+                    <span class="text-gray-700 text-xs mt-1">Fire</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <div class="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center">
+                        <i class="bi bi-exclamation-triangle text-gray-700"></i>
+                    </div>
+                    <span class="text-gray-700 text-xs mt-1">SOS</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section class="mt-5">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-semibold text-gray-700">Upcoming Events</h2>
+                <a href="#" class="text-xs text-green-500 font-medium">View all</a>
+            </div>
+            <div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
+                <!-- Event Card 1 -->
+                <div class="glass-card flex-shrink-0 w-44 rounded-lg overflow-hidden">
+                    <div class="h-24 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=3269&auto=format&fit=crop" alt="Event" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-2 w-full">
+                            <span class="text-xs text-white">EVBox Art Studio</span>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs text-green-500 mb-1">Today at 6:30 PM</div>
+                        <h3 class="text-sm font-medium text-gray-800">The Romanian - Solo Exhibition</h3>
+                    </div>
+                </div>
+
+                <!-- Event Card 2 -->
+                <div class="glass-card flex-shrink-0 w-44 rounded-lg overflow-hidden">
+                    <div class="h-24 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1610890549648-38200d70efc6?q=80&w=3270&auto=format&fit=crop" alt="Event" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-2 w-full">
+                            <span class="text-xs text-white">MS Office Auditorium</span>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs text-green-500 mb-1">Tomorrow at 11:00 AM</div>
+                        <h3 class="text-sm font-medium text-gray-800">The Great Russian Circus</h3>
+                    </div>
+                </div>
+
+                <!-- Event Card 3 -->
+                <div class="glass-card flex-shrink-0 w-44 rounded-lg overflow-hidden">
+                    <div class="h-24 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=3270&auto=format&fit=crop" alt="Event" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 bg-gradient-to-t from-black/80 to-transparent p-2 w-full">
+                            <span class="text-xs text-white">Galaxy Studio</span>
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div class="text-xs text-green-500 mb-1">Tomorrow at 8:30 PM</div>
+                        <h3 class="text-sm font-medium text-gray-800">Laser Show</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Finance & Accounts -->
+        <section class="mt-5">
+            <h2 class="text-lg font-semibold text-gray-700 mb-3">Finance & Accounts</h2>
+            <div class="grid grid-cols-5 gap-3">
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <i class="bi bi-wallet2 text-gray-700 text-xl"></i>
+                    <span class="text-gray-700 text-xs mt-1">Accounts</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <i class="bi bi-plus-circle text-gray-700 text-xl"></i>
+                    <span class="text-gray-700 text-xs mt-1">Add</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <i class="bi bi-qr-code text-gray-700 text-xl"></i>
+                    <span class="text-gray-700 text-xs mt-1">Scan to Pay</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <i class="bi bi-currency-rupee text-gray-700 text-xl"></i>
+                    <span class="text-gray-700 text-xs mt-1">Forex</span>
+                </div>
+                <div class="glass-card p-2 rounded-lg flex flex-col items-center justify-center">
+                    <i class="bi bi-clock-history text-gray-700 text-xl"></i>
+                    <span class="text-gray-700 text-xs mt-1">Balance</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotions -->
+        <section class="mt-5">
+            <div class="glass-card p-4 rounded-xl overflow-hidden relative animate-fade-in">
+                <div class="flex justify-between">
+                    <div>
+                        <div class="text-sm text-gray-600">Tapan Store</div>
+                        <div class="text-xs text-gray-400">Fresh fruits, vegetables</div>
+                        <div class="text-xl font-bold mt-5">Happy Weekend!</div>
+                        <div class="text-3xl font-bold text-gray-800">25% OFF</div>
+                        <div class="text-xs text-gray-500 mt-1">*T&C Apply</div>
+                    </div>
+                    <div class="w-32">
+                        <img src="https://images.unsplash.com/photo-1543168256-418811576931?q=80&w=2940&auto=format&fit=crop" alt="Grocery" class="h-32 object-cover">
+                    </div>
+                </div>
+                <div class="absolute top-0 right-0 h-full">
+                    <div class="h-full flex items-center">
+                        <div class="bg-teal-400 text-white p-3 rounded-l-lg writing-mode-vertical">
+                            <span class="transform rotate-90 inline-block">Shop Now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="glass-footer fixed bottom-0 left-0 right-0 p-2 z-40">
+        <div class="flex justify-between items-center">
+            <button class="flex flex-col items-center text-white">
+                <i class="bi bi-house-door-fill text-xl"></i>
+                <span class="text-[10px]">Home</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400">
+                <i class="bi bi-search text-xl"></i>
+                <span class="text-[10px]">Search</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400">
+                <i class="bi bi-grid text-xl"></i>
+                <span class="text-[10px]">Categories</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400">
+                <i class="bi bi-bag text-xl"></i>
+                <span class="text-[10px]">Cart</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400">
+                <i class="bi bi-list-ul text-xl"></i>
+                <span class="text-[10px]">Menu</span>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
+            const carousel = document.getElementById('carousel');
+            const indicators = document.querySelectorAll('.slide-indicator');
+            let currentSlide = 0;
+            const totalSlides = indicators.length;
+
+            // Generate carousel items
+            for (let i = 1; i < totalSlides; i++) {
+                const item = document.createElement('div');
+                item.className = 'carousel-item absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 ease-in-out';
+                const img = document.createElement('img');
+                img.src = `https://images.unsplash.com/photo-${1550000000 + i * 1000000}?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60`;
+                img.className = 'object-cover w-full h-full';
+                img.alt = `Banner ${i+1}`;
+                item.appendChild(img);
+                carousel.appendChild(item);
+            }
+
+            const slides = document.querySelectorAll('.carousel-item');
+
+            // Set up automatic slideshow
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.opacity = i === index ? '1' : '0';
+                });
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                showSlide((currentSlide + 1) % totalSlides);
+            }
+
+            // Click event for indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                });
+            });
+
+            // Set up automatic slideshow
+            setInterval(nextSlide, 5000);
+
+            // Menu button functionality
+            const menuBtn = document.getElementById('menuBtn');
+            menuBtn.addEventListener('click', function() {
+                // Add side menu functionality here
+                alert('Menu functionality will be implemented here');
+            });
+
+            // Setup glassmorphism effect
+            const glassCards = document.querySelectorAll('.glass-card');
+            glassCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+                card.addEventListener('click', function() {
+                    const cardText = this.querySelector('span').textContent;
+                    alert(`You clicked on ${cardText}`);
+                });
+            });
+
+            // Simulate API call for emergency services
+            const loadEmergencyServices = async () => {
+                try {
+                    const emergencyCards = document.querySelectorAll('.emergency-card');
+                    emergencyCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('animate-fade-in');
+                        }, index * 100);
+                    });
+                } catch (error) {
+                    console.error('Error loading emergency services:', error);
+                }
+            };
+
+            // Initialize app data
+            const initApp = async () => {
+                // Generate random user ID for database operations
+                const userId = 'user_' + Math.random().toString(36).substring(2, 9);
+                localStorage.setItem('bharatPassUserId', userId);
+                
+                // Initialize app data
+                const appSlug = 'bharat-pass-app-' + Math.random().toString(36).substring(2, 9);
+                localStorage.setItem('bharatPassAppSlug', appSlug);
+
+                loadEmergencyServices();
+            };
+
+            initApp();
+        });
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
